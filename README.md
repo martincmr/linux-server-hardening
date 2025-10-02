@@ -27,21 +27,21 @@ Transform a default Ubuntu Server installation into a production-ready system wi
 
 ## Project Structure
 
-linux-server-hardening/
-├── README.md
-├── screenshots/
-│   ├── before/
-│   ├── during/
-│   └── after/
-├── configs/
-│   ├── sshd_config
-│   ├── sysctl.conf
-│   └── jail.local
-├── reports/
-│   ├── lynis-before.txt
-│   └── lynis-after.txt
-└── docs/
-    └── implementation-log.md
+* **linux-server-hardening/**
+    * `README.md`
+    * **configs/**
+        * `sshd_config`
+        * `sysctl.conf`
+        * `jail.local`
+    * **reports/**
+        * `lynis-before.txt`
+        * `lynis-after.txt`
+    * **screenshots/**
+        * `before/`
+        * `during/`
+        * `after/`
+    * **docs/**
+        * `implementation-log.md`
 
 ## Security Controls Implemented
 
@@ -144,3 +144,4 @@ Cybersecurity Analyst
 
 
 *This project was completed as part of hands-on security training and portfolio development. The implementation demonstrates practical application of security concepts for SMB server environments.*
+
