@@ -1,0 +1,161 @@
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-84-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu Oct  2 02:22:02 PM UTC 2025
+
+  System load:             0.0
+  Usage of /:              13.7% of 24.44GB
+  Memory usage:            11%
+  Swap usage:              0%
+  Processes:               106
+  Users logged in:         1
+  IPv4 address for enp0s3: 10.0.2.15
+  IPv6 address for enp0s3: fd17:625c:f037:2:a00:27ff:feca:e92a
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+12 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Wed Oct  1 15:12:45 2025 from 192.168.50.15
+admin@server:~$ 
+admin@server:~$ cat /etc/ssh/sshd_config
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+Include /etc/ssh/sshd_config.d/*.conf
+
+# When systemd socket activation is used (the default), the socket
+# configuration must be re-generated after changing Port, AddressFamily, or
+# ListenAddress.
+#
+# For changes to take effect, run:
+#
+#   systemctl daemon-reload
+#   systemctl restart ssh.socket
+#
+Port 2222
+#AddressFamily any
+ListenAddress 0.0.0.0
+#ListenAddress ::
+
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Ciphers and keying
+#RekeyLimit default none
+
+# Logging
+#SyslogFacility AUTH
+LogLevel VERBOSE
+
+# Authentication:
+
+#LoginGraceTime 2m
+#PermitRootLogin prohibit-password
+#StrictModes yes
+MaxAuthTries 3
+MaxSessions 2
+
+#PubkeyAuthentication yes
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+#AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+#PasswordAuthentication yes
+#PermitEmptyPasswords no
+
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+KbdInteractiveAuthentication no
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+
+# GSSAPI options
+#GSSAPIAuthentication no
+#GSSAPICleanupCredentials yes
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the KbdInteractiveAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via KbdInteractiveAuthentication may bypass
+# the setting of "PermitRootLogin prohibit-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and KbdInteractiveAuthentication to 'no'.
+UsePAM yes
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding no
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+PrintMotd no
+#PrintLastLog yes
+TCPKeepAlive no
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+ClientAliveCountMax 2
+#UseDNS no
+#PidFile /run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+
+# no default banner path
+#Banner none
+
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
+
+# override default of no subsystems
+Subsystem	sftp	/usr/lib/openssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+	AllowTcpForwarding no
+#	PermitTTY no
+#	ForceCommand cvs server
